@@ -17,8 +17,8 @@ const int COL_ITERATION = 500;
 void drawFractal(GBufferedImage* image, GWindow window);
 
 /**
- * The main method of the program creates a
- * window and calls the method that draws fractal
+ * The main function of the program creates a
+ * window and calls the function that draws fractal
  */
 int main(){
     GWindow window(WIDTH_WINDOW, HEIGHT_WINDOW);
@@ -29,11 +29,11 @@ int main(){
 }
 
 /**
- * Method: drawFractal
+ * Function: drawFractal
  * Usage: drawFractal(GBufferedImage* image, GWindow window)
  * ________________________________________________________
  *
- * This method produces a mathematical calculation determines
+ * This function produces a mathematical calculation determines
  * the location of a fractal and visualizes it
  *
  * @param image - image of which will be displayed fractal

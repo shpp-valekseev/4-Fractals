@@ -14,13 +14,15 @@ const int WIDTH_WINDOW = 600;
 const int HEIGHT_WINDOW = 600;
 const int COL_ITERATION = 200000;
 const int IDENT = 50;
+const int BLACK_COLOR = 0x000000;
+const int WHITE_COLOR = 0xffffff;
 
 void drawFractal(GBufferedImage* image);
 
-/* Main method of the program*/
+/* Main function of the program*/
 int main() {
     GWindow window (WIDTH_WINDOW, HEIGHT_WINDOW);
-    GBufferedImage* image = new GBufferedImage(WIDTH_WINDOW, HEIGHT_WINDOW, 0xffffff);
+    GBufferedImage* image = new GBufferedImage(WIDTH_WINDOW, HEIGHT_WINDOW, WHITE_COLOR);
     window.add(image);
 
     drawFractal(image);
@@ -28,11 +30,11 @@ int main() {
 }
 
 /**
- * Method: drawFractal
+ * Function: drawFractal
  * Using: drawFractal(GBufferedImage* image)
  * ________________________________________
  *
- * Method creates three points in the  corners of
+ * Function creates three points in the  corners of
  * triangle. Subsequent points draws on the next
  * principle: On a point randomly selects a different
  * point between them draws a new point.
@@ -53,7 +55,7 @@ void drawFractal(GBufferedImage* image){
 
     // randomly selected point, and creates a new point midway between the the previous
     for(int i = 0; i < COL_ITERATION; i++){
-        image->setRGB(int(pointX), int(pointY), 0x000000);
+        image->setRGB(int(pointX), int(pointY), BLACK_COLOR);
         switch(randomInteger(1,3))
         {
         case 1:
