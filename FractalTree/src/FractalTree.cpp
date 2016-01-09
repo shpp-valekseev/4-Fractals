@@ -9,7 +9,7 @@
 
 using namespace std;
 
-// Constants and function prototypes
+// Constants
 const int WIDTH_WINDOW = 700;
 const int HEIGHT_WINDOW = 600;
 const int START_SIZE = 220;
@@ -23,13 +23,17 @@ const int HEIGHT_RELATIVE_SCREEN = 15;
 const int TILT_GRASS = 30;
 const int TILT_TREE = 40;
 const double REDUCTION_COEFFICIENT_BRANCH_SIZE = 1.4;
+const double COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE = 1.2;
+const int COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS = 3;
+const double MIN_SIZE_OF_BRANCHES_IN_FOREST = 2.5;
+const int STEP_BETWEEN_GRASS = 3;
 
-
+// Function prototypes
 void drawForest(GWindow & window);
 void drawGrass(GWindow & window);
 void drawTree(int x, int y, GWindow & window, int size, int minSize, int angle);
 
-/* Main method of the program */
+/* Main function of program */
 int main() {
     GWindow window(WIDTH_WINDOW, HEIGHT_WINDOW);
 
@@ -45,17 +49,17 @@ int main() {
  * Usage: drawForest(GWindow & window)
  * ___________________________________
  *
- * Draws 10 trees of random sizes in a given range
+ * Draws trees of random sizes in a given range
  *
  * @param window in which will draw image
  */
 void drawForest(GWindow & window){
-    int stepX = WIDTH_WINDOW / NUMBER_OF_TREES_IN_FOREST;
+    int stepX = WIDTH_WINDOW / NUMBER_OF_TREES_IN_FOREST; 
     for(int i = 1; i < NUMBER_OF_TREES_IN_FOREST; i++){
         int step = stepX * i;
-        int heightTree = randomInteger((HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) / 1.2, (HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) * 1.2);
+        int heightTree = randomInteger((HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) / COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE, (HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) * COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE);
 
-        drawTree(step, HEIGHT_WINDOW, window, heightTree, MIN_SIZE / 4, DEGREES_DIRECTION_WOOD);
+        drawTree(step, HEIGHT_WINDOW, window, heightTree, MIN_SIZE_OF_BRANCHES_IN_FOREST, DEGREES_DIRECTION_WOOD);
     }
 }
 
@@ -69,9 +73,9 @@ void drawForest(GWindow & window){
  * @param window in which will draw image
  */
 void drawGrass(GWindow & window){
-    for(int i = 0; i < window.getWidth(); i += 3){
+    for(int i = 0; i < window.getWidth(); i += STEP_BETWEEN_GRASS){
         window.setColor(GREEN_COLOR_LEAVES);
-        int height = randomInteger(HEIGHT_GRASS/3, HEIGHT_GRASS/0.3);
+        int height = randomInteger(HEIGHT_GRASS / COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS, HEIGHT_GRASS * COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS);
         int angle = randomInteger(-TILT_GRASS, TILT_GRASS);
         window.drawPolarLine(i, HEIGHT_WINDOW, height, angle + DEGREES_DIRECTION_WOOD);
     }
