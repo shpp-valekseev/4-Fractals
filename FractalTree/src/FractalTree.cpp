@@ -1,5 +1,5 @@
 /**
- * The program draws a fractal tree
+ * This program draws a fractal tree
  */
 
 #include <iostream>
