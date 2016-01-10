@@ -57,7 +57,8 @@ void drawForest(GWindow & window){
     int stepX = WIDTH_WINDOW / NUMBER_OF_TREES_IN_FOREST; 
     for(int i = 1; i < NUMBER_OF_TREES_IN_FOREST; i++){
         int step = stepX * i;
-        int heightTree = randomInteger((HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) / COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE, (HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) * COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE);
+        int heightTree = randomInteger((HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) / COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE, 
+                                        (HEIGHT_WINDOW / HEIGHT_RELATIVE_SCREEN) * COEFFICIENT_OF_VARIATION_HEIGHT_OF_TREE);
 
         drawTree(step, HEIGHT_WINDOW, window, heightTree, MIN_SIZE_OF_BRANCHES_IN_FOREST, DEGREES_DIRECTION_WOOD);
     }
@@ -75,7 +76,8 @@ void drawForest(GWindow & window){
 void drawGrass(GWindow & window){
     for(int i = 0; i < window.getWidth(); i += STEP_BETWEEN_GRASS){
         window.setColor(GREEN_COLOR_LEAVES);
-        int height = randomInteger(HEIGHT_GRASS / COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS, HEIGHT_GRASS * COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS);
+        int height = randomInteger(HEIGHT_GRASS / COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS,
+                                    HEIGHT_GRASS * COEFFICIENT_OF_VARIATION_HEIGHT_OF_GRASS);
         int angle = randomInteger(-TILT_GRASS, TILT_GRASS);
         window.drawPolarLine(i, HEIGHT_WINDOW, height, angle + DEGREES_DIRECTION_WOOD);
     }
